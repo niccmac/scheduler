@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 export default function DayListItem(props) {
   const { spots } = props;
+  const { onChange } = props;
   
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected":  props.selected,
@@ -20,7 +21,7 @@ export default function DayListItem(props) {
   }
   formatSpots();
   return (
-     <li onClick={() => props.setDay(props.name)} className={dayClass}>
+     <li onClick={() => onChange(props.name)} className={dayClass} selected={props.selected}>
       <h2 >{props.name}</h2> 
       <h3 >{spotsText}</h3>
     </li>
