@@ -3,6 +3,7 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import DayListItem from "./DayListItem";
 
+
 const days = [
   {
     id: 1,
@@ -23,6 +24,7 @@ const days = [
 
 export default function Application(props) {
   const [day, setDay] = useState('Monday');
+  
 
   return (
     <main className="layout">
