@@ -1,7 +1,9 @@
-import React from "react";
+import React from "react"; 
+import "components/InterviewerList.scss"
 
 
 export default function interviewerList() {
+  
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
