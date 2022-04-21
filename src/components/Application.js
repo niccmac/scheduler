@@ -43,27 +43,20 @@ const appointments = {
   }
 };
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
 
 export default function Application(props) {
-  const [day, setDay] = useState('Monday');
-
+  const [day, setDay] = useState(`Monday`);
+  const days = [];
+  const daysURL = `http://localhost:8001/api/days`;
+  useEffect(() => axios.get(daysURL)
+  .then((response) => {
+    console.log(`Axios Day URL response:`, response)
+    days.push(response);})
+  .catch((error) => {
+    console.log(`Axios Day URL get error status:`,error.response.status);
+    console.log(`Axios Day URL get error header:`,error.response.header);
+    console.log(`Axios Day URL get error data:`,error.response.data);
+  }),[]);
 
   return (
     <main className="layout">
