@@ -169,7 +169,7 @@ storiesOf("Button", module)
         onClose={action("onClose")} />)
       .add("Edit", () => <Form 
         student="Nicole MacLean" 
-        interviewer={0} 
+        interviewer={1} 
         interviewers={interviewers} 
         onSave={action("onSave")}
         onCancel={action("onCancel")}
