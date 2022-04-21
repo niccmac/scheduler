@@ -87,7 +87,6 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-
         { Object.values(appointments).map((values) => <Appointment
           key={values}
           id={values.id}
@@ -95,8 +94,6 @@ export default function Application(props) {
           interview={values.interview}
         />)
         }
-      
-
         <Appointment key="last" time="5pm" />
       </section>
     </main>
