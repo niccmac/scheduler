@@ -7,7 +7,7 @@ export default function(props) {
         className="appointment__add-button"
         src="image/add.png"
         alt="add"
-        onClick={props.onAdd}
+        onClick={ props.onAdd }
       />
     </main>
   )
