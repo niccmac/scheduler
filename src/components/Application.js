@@ -46,15 +46,17 @@ const appointments = {
 
 export default function Application(props) {
   
-  const [day, setDay] = useState(`Monday`);
+  const [ state, setState ] = useState({
+    day: "Monday",
+    days: [], 
+    appointments: {}
+  })
 
-  const days = [];
   const daysURL = `http://localhost:8001/api/days`;
+  const setDays = days => setState({ ...state, days });
 
   useEffect(() => axios.get(daysURL)
-  .then((response) => {
-    console.log(`Axios Day URL response:`, response)
-    days.push(response);})
+  .then((response) => setDays(response.data))
   .catch((error) => {
     console.log(`Axios Day URL get error status:`,error.response.status);
     console.log(`Axios Day URL get error header:`,error.response.header);
@@ -72,8 +74,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            value={day}
+            days={state.days}
+            value={state.day}
             onChange={"in here"}
           />
         </nav>
