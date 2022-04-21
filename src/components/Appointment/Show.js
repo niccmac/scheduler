@@ -1,5 +1,6 @@
 import React from "react";
 
+// Requirer porps student: string, interviewer : obj, onEdit: func, onDelete: func.
 export default function (props) {
   return (
     <main className="appointment__card appointment__card--show">
