@@ -159,22 +159,22 @@ storiesOf("Button", module)
         onEdit={action("onEdit")}
         onDelete={action("onDelete")}
        />)
-       .add("Confirm", () => <Confirm 
+      .add("Confirm", () => <Confirm 
         onConfirm={action("onConfirm")} 
         onCancel={action("onCancel")}
         message="Delete the appointment?"/>)
-       .add("Status", () => <Status message="Deleting" />)
-       .add("Error", () => <Error 
+      .add("Status", () => <Status message="Deleting" />)
+      .add("Error", () => <Error 
         message="Could not delete appointment."
         onClose={action("onClose")} />)
-       .add("Edit", () => <Form 
+      .add("Edit", () => <Form 
         student="Nicole MacLean" 
         interviewer={0} 
         interviewers={interviewers} 
         onSave={action("onSave")}
         onCancel={action("onCancel")}
         />)
-        .add("Create", () => <Form 
+      .add("Create", () => <Form 
           interviewers={interviewers}
           onSave={action("onSave")}
           onCancel={action("onCancel")}
