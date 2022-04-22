@@ -56,4 +56,7 @@ const days = [
     spots: 0,
   },
 ];
+
+
+
 ```
