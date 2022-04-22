@@ -21,4 +21,15 @@ export function getAppointmentsForDay(state, day) {
 
 export function getInterview(state, interview) {
   
+  const { interviewers } = state;
+  if ( interview ) {
+    const id = interview.interviewer;
+  const student = interview.student;
+  const returnThis = { 
+    "student": student,
+    "interviewer": interviewers[id]}
+  return returnThis;
+  }
+  return null;
+  
 }
