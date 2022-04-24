@@ -1,5 +1,4 @@
-import { getAppointmentsForDay } from "./seletors";
-import { getInterview } from "./seletors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "./seletors";
 
 const state = {
   days: [
@@ -74,7 +73,7 @@ test("getAppointmentsForDay returns an empty array when the day is not found", (
 //Interviewer Testing
 
 test("getInterviewersForDay returns an array", () => {
-  const result = getAppointmentsForDay(state, "Monday");
+  const result = getInterviewersForDay(state, "Monday");
   expect(Array.isArray(result)).toBe(true);
 });
 
@@ -84,18 +83,18 @@ test("getInterviewersForDay returns an array with a length matching the number o
 });
 
 test("getInterviewersForDay returns an array containing the correct Interviewer objects", () => {
-  const [first, second] = getAppointmentsForDay(state, "Tuesday");
+  const [first, second] = getInterviewersForDay(state, "Tuesday");
   expect(first).toEqual(state.appointments["4"]);
   expect(second).toEqual(state.appointments["5"]);
 });
 
 test("getInterviewersForDay returns an empty array when the days data is empty", () => {
-  const result = getAppointmentsForDay({ days: [] }, "Monday");
+  const result = getInterviewersForDay({ days: [] }, "Monday");
   expect(result.length).toEqual(0);
 });
 
 test("getInterviewersForDay returns an empty array when the day is not found", () => {
-  const result = getAppointmentsForDay(state, "Wednesday");
+  const result = getInterviewersForDay(state, "Wednesday");
   expect(result.length).toEqual(0);
 });
 
