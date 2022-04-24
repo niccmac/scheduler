@@ -2,6 +2,7 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 import React, { useState } from "react";
 import "components/Appointment/styles.scss";
+import useVisualMode from "hooks/useVisualMode";
 
 // PROPS: 
 //
@@ -16,15 +17,13 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
-  const reset = () => {
-    setStudent("");
-    setInterviewer(null);
-  }
 
-  const cancel = () => {
+
+  const cancelHandle = function(e) {
+    e.preventDefault();
     props.onCancel()
-    reset()
   }
+ 
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -47,7 +46,7 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button onClick={ cancel } danger>Cancel</Button>
+          <Button onClick={ (e) => cancelHandle(e) } danger>Cancel</Button>
           <Button onClick={ props.onSave } confirm>Save</Button>
         </section>
       </section>
