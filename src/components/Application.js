@@ -3,7 +3,7 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 import axios  from "axios";
-import { getAppointmentsForDay } from "helpers/seletors";
+import { getAppointmentsForDay, getInterviewersForDay } from "helpers/seletors";
 
 export default function Application(props) {
   
@@ -17,7 +17,8 @@ export default function Application(props) {
   const setDay = day => setState(prev => ({ ...prev, day }));
     
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  
+  const interviewers = getInterviewersForDay(state, state.day);
+
   const URLS = {
     "GET_DAYS":     `http://localhost:8001/api/days`,
     "GET_APPOINTMENTS": `http://localhost:8001/api/appointments`,
@@ -37,24 +38,6 @@ export default function Application(props) {
     })
   }, [])
    
-//   const appointments = getAppointmentsForDay(state, day);
-
-// const schedule = appointments.map((appointment) => {
-//   const interview = getInterview(state, appointment.interview);
-
-//   return (
-//     <Appointment
-//       key={appointment.id}
-//       id={appointment.id}
-//       time={appointment.time}
-//       interview={interview}
-//     />
-//   );
-// });
-  
-
-
-
   return (
     <main className="layout">
       <section className="sidebar">
@@ -80,9 +63,10 @@ export default function Application(props) {
       <section className="schedule">
         { dailyAppointments.map((value) => <Appointment
           key= { value.id } 
-          id={value.id}
-          time={value.time}
-          interview={value.interview}
+          id={ value.id }
+          time={ value.time }
+          interview={ value.interview }
+          interviewers={ interviewers }
         />)
         }
         <Appointment key="last" time="5pm" />
