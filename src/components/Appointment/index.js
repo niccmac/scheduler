@@ -7,7 +7,6 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
 
 export default function Appointment(props) {
-  console.log('appointment props', props)
   const { interview } = props;
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
