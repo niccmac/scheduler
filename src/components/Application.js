@@ -15,9 +15,10 @@ export default function Application(props) {
   })
   
   const setDay = day => setState(prev => ({ ...prev, day }));
-    
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
+
+  console.log(`daily app`, interviewers)
 
 
   const URLS = {
@@ -37,11 +38,9 @@ export default function Application(props) {
         interviewers: all[2].data 
       }));
     })
-  }, [])
+  }, []);
 
-  const bookInterview = (id, interview) => {
-    console.log(id, interview)
-  }
+ 
    
   return (
     <main className="layout">
@@ -54,9 +53,9 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={state.days}
-            value={state.day}
-            onChange={setDay}
+            days={ state.days }
+            value={ state.day }
+            onChange={ setDay }
           />
         </nav>
         <img
@@ -74,6 +73,7 @@ export default function Application(props) {
           time={ appointment.time }
           interview={ getInterview(state, appointment.interview) }
           interviewers = { interviewers }
+
         />)
         }
         <Appointment key="last" time="5pm" />

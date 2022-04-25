@@ -11,6 +11,8 @@ export function getAppointmentsForDay(state, day) {
     }
   });
 
+
+
   correctDay.map((keys) => {
     for( const key of keys.appointments) {
       correctAppointments.push(appointments[key])
@@ -36,24 +38,12 @@ export function getInterview(state, interview) {
 }
 
 export function getInterviewersForDay(state, day) {
-  const { days, interviewers, appointments } = state;
-  if (state.days.length === 0 ) return [];
-
-  let appointmentIDlist = ``;
-  const correctInterviewers = [];
-
-  days.map((item) => { 
-    if (item.name === day) {
-      appointmentIDlist = (item.appointments);
-    }
-  });
-    for( const key of appointmentIDlist) {
-      if(appointments[key].interview){
-        const id = appointments[key].interview.interviewer
-        correctInterviewers.push(interviewers[id].name)  
-      }
-    }
+  const { days, interviewers } = state;
+  const daysFound = days.find(item => item.name === day);
   
-  return correctInterviewers
-  
+ if ( !daysFound ){
+   return [];
+ }
+  const interviewersForDay = daysFound.interviewers.map(interviewerID => interviewers[interviewerID])
+  return interviewersForDay;  
 }
