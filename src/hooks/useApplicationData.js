@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios  from "axios";
 
 export default function useApplicationData () {
-
+  
   // Set state using DB queries
   const [state, setState] = useState({
     day: "Monday",
@@ -10,8 +10,9 @@ export default function useApplicationData () {
     appointments: {},
     interviewers: {}
   })
+  const { days, day, appointments  } = state;
   const setDay = day => setState(prev => ({ ...prev, day }));
-
+  
   const URLS = {
     "GET_DAYS": `http://localhost:8001/api/days`,
     "GET_APPOINTMENTS": `http://localhost:8001/api/appointments`,
@@ -32,8 +33,27 @@ export default function useApplicationData () {
     })
   }, []);
 
+
+  //Update spots if appointment add or delete
+ 
+ 
+  const updateSpots = (requestType) =>{
+    const mappedDays = days.map((eachDay) => { 
+      if (eachDay.name === state.day) {
+        if (requestType === "bookInterview") {
+          return { ...eachDay, spots: eachDay.spots - 1 }
+        }
+        return { ...eachDay, spots: eachDay.spots + 1 }
+      }
+      return { ...eachDay }
+     })
+   return mappedDays;
+ }
+
+
   // Update DB with new/edited appointment
   const bookInterview = async (id, interview) => {
+   
     //Create state
     const appointment = {
       ...state.appointments[id],
@@ -43,13 +63,18 @@ export default function useApplicationData () {
       ...state.appointments,
       [id]: appointment
     };
+
     //Add new appointment to DB, then update state
     await axios.put(`/api/appointments/${id}`, appointment)
-      .then(() => setState({ ...state, appointments }))
+      .then(() => {
+        const days = updateSpots("bookInterview")
+        setState({ ...state, appointments, days })
+      })
     return
   };
 
   const cancelInterview = async(id) => {
+   
     //Create state
     const appointment = {
      ...state.appointments[id],
@@ -61,7 +86,10 @@ export default function useApplicationData () {
    };
  //Delete appointment from DB, then update state
      await axios.delete(`/api/appointments/${id}`, appointment )
-     .then(() => setState({ ...state, appointments }))
+     .then(() => {
+       const days = updateSpots()
+       setState({ ...state, appointments, days })
+      })
      return 
 
  }
