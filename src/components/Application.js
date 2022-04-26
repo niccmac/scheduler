@@ -37,10 +37,9 @@ export default function Application(props) {
       }));
     })
   }, []);
-
-
+  
   const bookInterview = async(id, interview) => {
-    //Update the state
+    //Create state
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -49,16 +48,30 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
- 
-
+  //Add new appointment to DB, then update state
       await axios.put(`/api/appointments/${id}`, appointment )
       .then(() => setState({ ...state, appointments }))
       .catch(err => console.log(`error`, err)) //Might need to handle better
       return 
-
-    
-   
   };
+
+  const cancelInterview = async(id) => {
+     //Create state
+     const appointment = {
+      ...state.appointments[id],
+      interview:  null 
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+  //Delete appointment from DB, then update state
+      await axios.delete(`/api/appointments/${id}`, appointment )
+      .then(() => setState({ ...state, appointments }))
+      .catch(err => console.log(`error`, err)) //Might need to handle better
+      return 
+
+  }
   
 
    
@@ -94,6 +107,7 @@ export default function Application(props) {
           interview={ getInterview(state, appointment.interview) }
           interviewers = { interviewers }
           bookInterview={ bookInterview }
+          cancelInterview={ cancelInterview }
         />)
         }
         <Appointment key="last" time="5pm" />
