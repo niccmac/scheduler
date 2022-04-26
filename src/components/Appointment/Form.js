@@ -16,14 +16,13 @@ export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  console.log(`student`, student)
+
 
   const cancelHandle = function(e) {
     e.preventDefault();
     props.onCancel()
   }
   const savehandle = function() {
-    console.log("clicked", student);
     props.onSave(student, interviewer)
   }
 
