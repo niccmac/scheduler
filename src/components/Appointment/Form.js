@@ -16,8 +16,8 @@ export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  
-
+  const keyString = ( Math.random() + 6).toString(36).substring(7);
+ 
 
   const cancelHandle = function(e) {
     e.preventDefault();
@@ -42,6 +42,7 @@ export default function Form(props) {
         </form>
 
         <InterviewerList
+          key={ keyString }
           interviewers={ props.interviewers }
           value={ interviewer }
           onChange= { setInterviewer }
