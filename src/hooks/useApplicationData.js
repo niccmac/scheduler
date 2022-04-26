@@ -12,7 +12,8 @@ export default function useApplicationData () {
   })
   const { days, day, appointments  } = state;
   const setDay = day => setState(prev => ({ ...prev, day }));
-  
+
+
   const URLS = {
     "GET_DAYS": `http://localhost:8001/api/days`,
     "GET_APPOINTMENTS": `http://localhost:8001/api/appointments`,
@@ -33,7 +34,7 @@ export default function useApplicationData () {
     })
   }, []);
 
-
+ console.log("appointments >>>>>", appointments);
   //Update spots if appointment add or delete
  
  
@@ -53,22 +54,28 @@ export default function useApplicationData () {
 
 
   // Update DB with new/edited appointment
-  const bookInterview = async (id, interview, edit) => {
+  const bookInterview = async (id, interview) => {
    
     //Create state
     const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
+      ...state.appointments[id]
     };
+    //to check if appointment is null or obj
+    const checkEditing = appointment.interview;
+
+    appointment.interview = { ...interview };
+
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
+    // Set days in case of edit
     let days = state.days;
+
     //Add new appointment to DB, then update state
     await axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
-        if (!edit) {
+        if (!checkEditing) {
           days = updateSpots("bookInterview")
         } 
         setState({ ...state, appointments, days}) 
