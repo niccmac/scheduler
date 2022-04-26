@@ -51,7 +51,6 @@ export default function Application(props) {
   //Add new appointment to DB, then update state
       await axios.put(`/api/appointments/${id}`, appointment )
       .then(() => setState({ ...state, appointments }))
-      .catch(err => console.log(`error`, err)) //Might need to handle better
       return 
   };
 
@@ -68,7 +67,6 @@ export default function Application(props) {
   //Delete appointment from DB, then update state
       await axios.delete(`/api/appointments/${id}`, appointment )
       .then(() => setState({ ...state, appointments }))
-      .catch(err => console.log(`error`, err)) //Might need to handle better
       return 
 
   }
