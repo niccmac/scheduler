@@ -3,6 +3,7 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 import axios  from "axios";
+import useVisualMode from "hooks/useVisualMode";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/seletors";
 
 export default function Application(props) {
@@ -37,8 +38,8 @@ export default function Application(props) {
     })
   }, []);
 
-  const bookInterview = (id, interview) => {
-    
+
+  const bookInterview = async(id, interview) => {
     //Update the state
     const appointment = {
       ...state.appointments[id],
@@ -48,9 +49,17 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({ ...state, appointments })
-  };
+ 
 
+      await axios.put(`/api/appointments/${id}`, appointment )
+      .then(() => setState({ ...state, appointments }))
+      .catch(err => console.log(`error`, err)) //Might need to handle better
+      return 
+
+    
+   
+  };
+  
 
    
   return (
