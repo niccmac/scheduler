@@ -3,7 +3,7 @@ import "components/DayListItem.scss";
 import classNames from "classnames";
 
 export default function DayListItem(props) {
-  const { spots, onChange, selected } = props;
+  const { spots, onChange } = props;
 
   
   const dayClass = classNames("day-list__item", {

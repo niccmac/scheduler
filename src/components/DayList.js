@@ -10,7 +10,7 @@ export default function DayList(props) {
 
   const dayValuesMapped =  days.map((dayValues) => < DayListItem 
     key = { dayValues.id } 
-    selected = { dayValues.name === props.value } 
+    selected = { dayValues.name === props.day } 
     spots = { dayValues.spots } 
     name = { dayValues.name } 
     onChange={ onChange } /> )

@@ -42,8 +42,9 @@ export default function useApplicationData () {
       if (eachDay.name === state.day) {
         if (requestType === "bookInterview") {
           return { ...eachDay, spots: eachDay.spots - 1 }
-        }
-        return { ...eachDay, spots: eachDay.spots + 1 }
+        } 
+          return { ...eachDay, spots: eachDay.spots + 1 }
+        
       }
       return { ...eachDay }
      })
@@ -63,15 +64,15 @@ export default function useApplicationData () {
       ...state.appointments,
       [id]: appointment
     };
-
+    let days = state.days;
     //Add new appointment to DB, then update state
     await axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
-        if (edit) {
-          const days = updateSpots("bookInterview")
-          setState({ ...state, appointments, days })
-        }
-        setState({ ...state, appointments})
+        if (!edit) {
+          days = updateSpots("bookInterview")
+        } 
+        setState({ ...state, appointments, days}) 
+        
       })
     return
   };
@@ -90,7 +91,7 @@ export default function useApplicationData () {
  //Delete appointment from DB, then update state
      await axios.delete(`/api/appointments/${id}`, appointment )
      .then(() => {
-       const days = updateSpots()
+       const days = updateSpots("deleteInterview")
        setState({ ...state, appointments, days })
       })
      return 
