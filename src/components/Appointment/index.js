@@ -8,22 +8,21 @@ import Form from "./Form";
 
 export default function Appointment(props) {
   const { interview } = props;
+
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
-  const bookInterview = (id, interview) => {
-    console.log(id, interview);
-  };
-
+  
   const save = (name, interviewer) => {
+    const appointmentID = props.id;
     const interview = {
-      student: arguments,
+      student: name,
       interviewer
     };
+    props.bookInterview(appointmentID, interview)
   };
 
   return (
@@ -33,14 +32,13 @@ export default function Appointment(props) {
       { mode === SHOW && (
         <Show
           student={ interview.student }
-          interviewer={ interview.interviewer }
+          interviewer={  interview.interviewer }
         />
       )}
       { mode === CREATE && <Form 
-        interviewers={ props.interviewers } 
-        onCancel={ back } 
-        onSave={ save }
-        bookInterview={ bookInterview }/> }
+      interviewers={ props.interviewers } 
+      onCancel={ back }
+      onSave={ save }/> }
     </article>
   )
 };

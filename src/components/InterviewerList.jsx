@@ -5,7 +5,7 @@ import InterviewerListItem from "./InterviewerListItem";
 export default function InterviewerList(props) {
   const { interviewers } = props;
   const interviewersArray = Object.entries(interviewers);
-  console.log(`interviewers`, interviewersArray)
+  
 
   const mapInterviewersToList = interviewersArray.map((person) =>
 

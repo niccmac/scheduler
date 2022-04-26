@@ -16,14 +16,16 @@ export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-
-
+  console.log(`student`, student)
 
   const cancelHandle = function(e) {
     e.preventDefault();
     props.onCancel()
   }
- 
+  const savehandle = function() {
+    console.log("clicked", student);
+    props.onSave(student, interviewer)
+  }
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -48,10 +50,11 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={ (e) => cancelHandle(e) } danger>Cancel</Button>
-          <Button onClick={ props.onSave(student, interviewer, props.bookInterview()) } confirm>Save</Button>
+          <Button onClick={ () => savehandle() }confirm>Save</Button>
         </section>
       </section>
     </main>
 
   )
 };
+

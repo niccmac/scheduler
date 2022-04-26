@@ -18,9 +18,6 @@ export default function Application(props) {
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
-  console.log(`daily app`, interviewers)
-
-
   const URLS = {
     "GET_DAYS":     `http://localhost:8001/api/days`,
     "GET_APPOINTMENTS": `http://localhost:8001/api/appointments`,
@@ -40,7 +37,16 @@ export default function Application(props) {
     })
   }, []);
 
- 
+  const bookInterview = (id, interview) => {
+    console.log(id, interview);
+    //Update the state
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+  };
+
+
    
   return (
     <main className="layout">
@@ -73,7 +79,7 @@ export default function Application(props) {
           time={ appointment.time }
           interview={ getInterview(state, appointment.interview) }
           interviewers = { interviewers }
-
+          bookInterview={ bookInterview }
         />)
         }
         <Appointment key="last" time="5pm" />
