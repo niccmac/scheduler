@@ -11,6 +11,8 @@ export default function useVisualMode(initial) {
     const newHistory = [...history, newMode];
     setHistory(newHistory)
     setMode(newMode);
+
+    // setHistory(prev => ([...prev, mode])) do we need this???
   };  
    
   function back() {
