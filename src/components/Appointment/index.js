@@ -37,6 +37,19 @@ export default function Appointment(props) {
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true))
   };
+
+  const edit = (name, interviewer) => {
+    const appointmentID = props.id;
+    const interview = {
+      student: name,
+      interviewer
+    };
+    transition(SAVING);
+    props.bookInterview(appointmentID, interview, edit)
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true))
+  };
+
   const confirmRemove = () => {
     transition(CONFIRM)
   }
@@ -76,7 +89,7 @@ export default function Appointment(props) {
         interviewer={props.interview.interviewer.id}
         interviewers={props.interviewers}
         onCancel={back}
-        onSave={save}
+        onSave={edit}
       />}
       {mode === SAVING && <Status message={"Saving"} />}
       {mode === DELETING && <Status message={"Deleting"} />}

@@ -52,7 +52,7 @@ export default function useApplicationData () {
 
 
   // Update DB with new/edited appointment
-  const bookInterview = async (id, interview) => {
+  const bookInterview = async (id, interview, edit) => {
    
     //Create state
     const appointment = {
@@ -67,8 +67,11 @@ export default function useApplicationData () {
     //Add new appointment to DB, then update state
     await axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
-        const days = updateSpots("bookInterview")
-        setState({ ...state, appointments, days })
+        if (edit) {
+          const days = updateSpots("bookInterview")
+          setState({ ...state, appointments, days })
+        }
+        setState({ ...state, appointments})
       })
     return
   };

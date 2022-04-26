@@ -2,7 +2,7 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 import React, { useState } from "react";
 import "components/Appointment/styles.scss";
-import useVisualMode from "hooks/useVisualMode";
+
 
 // PROPS: 
 //
