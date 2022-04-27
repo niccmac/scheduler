@@ -46,7 +46,7 @@ describe("Form", () => {
     const { getByText } = render(<Form 
       interviewers={ interviewers } 
       onSave={ onSave } 
-      name="Lydia Miller-Jones"/>)
+      student="Lydia Miller-Jones"/>)
 
     fireEvent.click(getByText("Save"))
     expect(getByText(/please select an interviewer/i)).toBeInTheDocument();
@@ -59,7 +59,8 @@ describe("Form", () => {
     const { queryByText, getByText } = render(<Form 
       interviewers={ interviewers } 
       onSave= { onSave } 
-      student="Lydia Miller-Jones"/>);
+      student="Lydia Miller-Jones"
+      interviewer={ 1 }/>);
     
      fireEvent.click(getByText("Save"));
 
@@ -67,7 +68,7 @@ describe("Form", () => {
     expect(queryByText(/please select an interviewer/i)).toBeNull();
   
     expect(onSave).toHaveBeenCalledTimes(1);
-    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
   });
 
 

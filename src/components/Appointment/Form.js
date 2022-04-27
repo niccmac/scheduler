@@ -16,14 +16,29 @@ export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("");
+  const [errorInterviwer, setErrorInterviewer] = useState("");
   const keyString = ( Math.random() + 6).toString(36).substring(7);
  
   const cancelHandle = function(e) {
     e.preventDefault();
     props.onCancel()
   }
-  const savehandle = function() {
-    props.onSave(student, interviewer)
+  // const savehandle = function() {
+  //   validate()
+  // }
+
+  function saveHandle() {
+    if (student === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+    if (interviewer === null) {
+      setErrorInterviewer("Please select an interviewer");
+      return;
+    }
+  
+    props.onSave(student, interviewer);
   }
 
   return (
@@ -40,7 +55,8 @@ export default function Form(props) {
             data-testid="student-name-input"
           />
         </form>
-
+        <section className="appointment__validation">{error}</section>
+        <section className="appointment__validation">{errorInterviwer}</section>
         <InterviewerList
           key={ keyString }
           interviewers={ props.interviewers }
@@ -51,7 +67,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={ (e) => cancelHandle(e) } danger>Cancel</Button>
-          <Button onClick={ () => savehandle() }confirm>Save</Button>
+          <Button onClick={ () => saveHandle() }confirm>Save</Button>
         </section>
       </section>
     </main>
