@@ -2,15 +2,7 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 import React, { useState } from "react";
 import "components/Appointment/styles.scss";
-
-
-// PROPS: 
-//
-//
-
-// RETURN:
-//
-//
+import { keyString } from "helpers/seletors";
 
 export default function Form(props) {
 
@@ -18,26 +10,40 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
   const [errorInterviwer, setErrorInterviewer] = useState("");
-  const keyString = ( Math.random() + 6).toString(36).substring(7);
+
+  
  
   const cancelHandle = function(e) {
     e.preventDefault();
-    props.onCancel()
+    setError("");
+    setErrorInterviewer(null);
+    setStudent("");
+    setInterviewer(null);
+    props.onCancel();
   }
-  // const savehandle = function() {
-  //   validate()
-  // }
 
   function saveHandle() {
+    // Resets errors, so that correcrt ones show if user has made changes
+    setError("");
+    setErrorInterviewer(null);
+    
+    // Checks if student and interviewer are blank > shows error(s)
     if (student === "") {
       setError("Student name cannot be blank");
-      return;
+      if (interviewer === null) {
+        console.log("shouldnt call if in here")
+        setErrorInterviewer("Please select an interviewer");
+        return;
+      }
+      return
     }
+    // Checks if interviewer is blank > shows error
     if (interviewer === null) {
       setErrorInterviewer("Please select an interviewer");
       return;
     }
-  
+    // If both student and interviewer have values > make appointment
+    
     props.onSave(student, interviewer);
   }
 

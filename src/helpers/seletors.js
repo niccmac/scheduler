@@ -47,3 +47,5 @@ export function getInterviewersForDay(state, day) {
   const interviewersForDay = daysFound.interviewers.map(interviewerID => interviewers[interviewerID])
   return interviewersForDay;  
 }
+
+export function keyString() { ( Math.random() + 6).toString(36).substring(7) };
