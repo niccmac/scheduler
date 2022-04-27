@@ -18,7 +18,6 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const keyString = ( Math.random() + 6).toString(36).substring(7);
  
-
   const cancelHandle = function(e) {
     e.preventDefault();
     props.onCancel()
@@ -38,6 +37,7 @@ export default function Form(props) {
             placeholder="Enter Student Name"
             value={ student }
             onChange={(e) => setStudent(e.target.value)}
+            data-testid="student-name-input"
           />
         </form>
 

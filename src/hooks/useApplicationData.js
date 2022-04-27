@@ -34,7 +34,7 @@ export default function useApplicationData () {
     })
   }, []);
 
- console.log("appointments >>>>>", appointments);
+
   //Update spots if appointment add or delete
  
  
