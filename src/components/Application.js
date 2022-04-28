@@ -5,7 +5,10 @@ import Appointment from "./Appointment";
 import useApplicationData from "hooks/useApplicationData";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/seletors";
 
+
 export default function Application(props) {
+  
+  // Update state hooks 
   const {
     state,
     setDay,
@@ -29,7 +32,7 @@ export default function Application(props) {
       );
     }
   );
-
+  // JSX for page
   return (
     <main className="layout">
       <section className="sidebar">
@@ -56,5 +59,5 @@ export default function Application(props) {
       </section>
     </main>
   );
-}
+};
 

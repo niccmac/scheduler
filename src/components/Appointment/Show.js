@@ -1,8 +1,8 @@
 import React from "react";
 
-// Requirer porps student: string, interviewer : obj, onEdit: func, onDelete: func.
+
 export default function (props) {
-  
+// JXS for booked appointments  
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

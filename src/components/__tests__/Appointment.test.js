@@ -1,10 +1,9 @@
 import React from "react";
-
 import { render, cleanup } from "@testing-library/react";
-
-
 import Appointment from "components/Appointment/index"
-// Appointment Props
+
+
+// Test Props
 const appointments = {
   "1": {
     id: 1,
@@ -43,12 +42,15 @@ const appointments = {
     time: "4pm",
   }
 };
+
+
 afterEach(cleanup);
+
+
 describe("Appointment", () => {
-
   it("renders without crashing", () => {
-    render(<Appointment props={ appointments }/>);
-  });
+    render(<Appointment props={appointments} />);
 
+  });
 })
 

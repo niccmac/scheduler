@@ -1,14 +1,18 @@
 describe('Apointments.', () => {
  
-  // Reset DB before running tests
-  
+
   beforeEach(() => {
+
+     // Reset DB before running tests
     cy.request("GET", "/api/debug/reset")
+    // Visits base URL from cypess.json
     cy.visit("/")
     cy.contains('Monday')
+
   });
 
-  xit('Should book an interview.', () => {
+
+  it('Should book an interview.', () => {
     
     cy.get('.appointment__add-button')
       .first()
@@ -23,9 +27,11 @@ describe('Apointments.', () => {
 
     cy.contains(".appointment__card--show", "Lydia Miller-Jones");
     cy.contains(".appointment__card--show", "Sylvia Palmer")
+
   });
 
-  xit('Should edit an interview.', () => {
+
+  it('Should edit an interview.', () => {
     
     cy.get( '[alt="Edit"]')
       .click({force: true})
@@ -42,6 +48,7 @@ describe('Apointments.', () => {
       cy.contains(".appointment__card--show", "Tori Malcolm");
 
   });
+
 
   it('Should cancel an interview.',() => {
 
@@ -60,4 +67,5 @@ describe('Apointments.', () => {
 
   });
 
+  
 });
