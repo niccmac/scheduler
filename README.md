@@ -1,5 +1,8 @@
 # Interview Scheduler
 
+- Project completed during LHL bootcamp - Using the latest tools and techniques, I built and tested a React application that allows users to book, edit and cancel interviews. 
+- First time using React, integrated testing and end-to-end testing. 🥳
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -8,18 +11,6 @@ Install dependencies with `npm install`.
 
 ```sh
 npm start
-```
-
-## Running Jest Test Framework
-
-```sh
-npm test
-```
-
-## Running Storybook Visual Testbed
-
-```sh
-npm run storybook
 ```
 ## Tech Stack
 - React

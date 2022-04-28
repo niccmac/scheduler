@@ -45,7 +45,6 @@
     "node-sass": "^4.14.0",
     "prop-types": "^15.8.1",
     "cypress": "^7.7.0"
-
   },
   "jest": {
     "watchPathIgnorePatterns": [
