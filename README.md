@@ -6,9 +6,9 @@
 - Project completed during LHL bootcamp - Using the latest tools and techniques, I built and tested a React application that allows users to book, edit and cancel interviews. 
 - First time using React, integrated testing and end-to-end testing. 🥳
 ## Screenshots
-![Error]('/Users/nicolemaclean/Desktop/lighthouse/react/scheduler/public/Docs/Screen Shot 2022-04-27 at 7.16.34 PM.png')
-![Delete?]('/Users/nicolemaclean/Desktop/lighthouse/react/scheduler/public/Docs/Screen Shot 2022-04-27 at 7.16.09 PM.png')
-![NoSpotsFriday]('public/Docs/Screen Shot 2022-04-27 at 7.15.43 PM.png')
+![Error](https://github.com/niccmac/scheduler/blob/master/public/Docs/Screen%20Shot%202022-04-27%20at%207.16.34%20PM.png)
+![Delete?](https://github.com/niccmac/scheduler/blob/master/public/Docs/Screen%20Shot%202022-04-27%20at%207.16.09%20PM.png)
+![NoSpotsFriday](https://github.com/niccmac/scheduler/blob/master/public/Docs/Screen%20Shot%202022-04-27%20at%207.15.43%20PM.png)
 
 
 
