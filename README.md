@@ -26,3 +26,6 @@ npm run storybook
 - Webpack, Babel
 - Axios, WebSockets
 - Storybook, Webpack Dev Server, Jest, Testing Library
+
+## Quick Functionality View
+![GIF](https://github.com/niccmac/scheduler/blob/master/public/images/ezgif-5-99c60292a7.gif)
