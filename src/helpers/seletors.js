@@ -6,7 +6,7 @@ export function getAppointmentsForDay(state, day) {
   const correctAppointments = [];
 
   // Finds state day
-  days.find((item) => {
+  days.map((item) => {
     if (item.name === day) {
       correctDay.push(item);
     };
