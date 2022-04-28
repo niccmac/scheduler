@@ -2,16 +2,16 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "./se
 
 const state = {
   days: [
-    {
-      id: 1,
-      name: "Monday",
-      appointments: [1, 2, 3]
-    },
-    {
-      id: 2,
-      name: "Tuesday",
-      appointments: [4, 5]
-    }
+    { "id": 1, 
+    "name": "Monday", 
+    "appointments": [1, 2, 3], 
+    "interviewers": [1, 2, 3, 5, 7], 
+    "spots": 4 }, 
+    { "id": 2, 
+    "name": "Tuesday", 
+    "appointments": [4, 5], 
+    "interviewers": [2, 3, 5, 7, 9], 
+    "spots": 1 }
   ],
   appointments: {
     "1": { id: 1, time: "12pm", interview: null },
@@ -84,7 +84,7 @@ test("getInterviewersForDay returns an array with a length matching the number o
 
 test("getInterviewersForDay returns an array containing the correct Interviewer objects", () => {
   const [first] = getInterviewersForDay(state, "Tuesday");
-  expect(first).toEqual(state.interviewers['2'].name);
+  expect(first).toEqual(state.interviewers['2']);
 
 });
 

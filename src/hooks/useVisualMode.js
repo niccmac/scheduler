@@ -12,10 +12,11 @@ export default function useVisualMode(initial) {
     setHistory(newHistory)
     setMode(newMode);
 
-    // setHistory(prev => ([...prev, mode])) do we need this???
+    
   };  
    
   function back() {
+    console.log("gets in here")
     if ( history.length < 2) {
       setMode(history[0]);  
 
